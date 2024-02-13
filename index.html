@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hihi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <h2>Пример insert</h2>
+        <span>
+            <code>
+                insert into Product values('fsdfsdf',123,'Майкоп')
+            </code>
+        </span>
+        <p>
+            INSERT INTO Product: Эта часть запроса указывает, что вы хотите вставить данные в таблицу "Product"<br>
+            VALUES ('fsdfsdf', 123, 'Майкоп'): Здесь предоставляются значения, которые вы хотите вставить в соответствующие столбцы таблицы "Product". Значения предоставляются в том же порядке, что и столбцы в таблице.<br>
+            Первое значение 'fsdfsdf' соответствует первому столбцу в таблице "Product".<br>
+            Второе значение 123 соответствует второму столбцу.<br>
+            Третье значение 'Майкоп' соответствует третьему столбцу.<br>
+            Предполагая, что у таблицы "Product" три столбца (в порядке: column1, column2, column3), предоставленный запрос INSERT вставит новую строку в таблицу "Product" со значениями 'fsdfsdf', 123 и 'Майкоп' для соответствующих столбцов.<br>
+        </p>
+    </div>
+    <div>
+        <h2>Пример delete</h2>
+        <span>
+            <code>
+                delete from Product where Product.Name='fsdfsdf';
+            </code>
+        </span>
+        <p>
+            DELETE FROM Product: Эта часть запроса указывает, что вы хотите удалить данные из таблицы "Product".<br>
+            WHERE Product.Name = 'fsdfsdf': Это условие определяет, какие строки будут удалены. В данном случае, удаляются только те строки, где значение в столбце "Name" равно 'fsdfsdf'.<br>
+            Таким образом, этот запрос удалит все строки из таблицы "Product", где значение в столбце "Name" соответствует 'fsdfsdf'. Убедитесь, что такие строки действительно существуют в вашей таблице перед выполнением этой операции, так как удаление данных необратимо.<br>
+        </p>
+    </div>
+    <div>
+        <h2>Пример простого select</h2>
+        <span>
+            <code>
+                select Postavka.Id_provide<br>
+                from Postavka<br>
+                where count=100
+            </code>
+        </span>
+        <p>
+            SELECT Id_provide: Эта часть запроса указывает, какие столбцы будут выбраны. В данном случае, выбирается столбец "Id_provide" из таблицы "Postavka".<br>
+            FROM Postavka: Это указывает, из какой таблицы будут выбраны данные. В данном случае, данные выбираются из таблицы "Postavka".<br>
+            WHERE Count = 100: Это условие фильтрации данных. Здесь предполагается, что "Count" - это столбец в таблице "Postavka", и выбираются только те строки, где значение в этом столбце равно 100.<br>
+        </p>
+    </div>
+    <div>
+        <h2>Пример задачи1 (group, вложенные запросы)</h2>
+        <span>
+            <code>
+                select Id_provide
+                from Postavka
+                where count>(select Max(count) 
+                            from Postavka 
+                            where Id_provide=1)
+                Group by Id_provide
+            </code>
+        </span>
+        
+        <p>
+            Получить номера поставщиков, которые поставляют, по крайней мере, один товар, в количестве большем, чем максимальное количество поставленных когда-либо товаров поставщиком с номером S1.
+        </p>
+    </div>
+    <div>
+        <h2>Пример задачи2 (insert)</h2>
+        <span>
+            <code>
+                insert into Archive  <br>
+                select * <br>
+                from Product<br>
+                where Price>1000 and izm='пачка'
+            </code>  
+        </span>
+        <p>
+            Вставить в архивную таблицу Tovar_Temp все товары, чья цена больше 1000 и единицы измерения равна «пачка».
+        </p>
+    </div>
+    <div>
+        <h2>Пример задачи3 (delete)</h2>
+        <span>
+            <code>
+                delete from Provider where Status &lt; 20
+            </code>
+        </span>
+        
+        <p>
+            Удалить из таблицы поставщиков записи о поставщиках со статусом меньшим 20.
+        </p>
+    </div>
+    <div>
+        <h2>Пример задачи4 (update)</h2>
+        <span>
+            <code>
+                update Product <br>
+                set Price=Price*(0.85)<br>
+                where izm='пачка' and City='Москва'
+            </code>
+        </span>
+        <p>
+            В таблице товаров уменьшить цену товаров из Москвы, которые поставляются в пачках, на 15%.
+        </p>
+    </div>
+    
+</body>
+</html>
